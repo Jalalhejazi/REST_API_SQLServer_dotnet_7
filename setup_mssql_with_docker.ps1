@@ -30,6 +30,9 @@ docker-reset
 # Download the latest SQL Server 2019 image from Microsoft Container Registry
 docker run -d --name sqlserver -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=Password123" -p 1433:1433 mcr.microsoft.com/mssql/server:2019-latest
 
+# or use volume to persist the data, log, secrets on disk 
+# docker run -d --name sqlserver -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=Password123" -p 1433:1433 -v c:/dockervolumes/sqlserver/data:/var/opt/mssql/data -v c:/dockervolumes/sqlserver/log:/var/opt/mssql/log -v c:/dockervolumes/sqlserver/secrets:/var/opt/mssql/secrets mcr.microsoft.com/mssql/server:2019-latest
+
 # Verify the docker container is running 
 docker ps -a
 
