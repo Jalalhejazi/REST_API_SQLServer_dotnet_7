@@ -4,7 +4,7 @@
 
 - REST API with dotnet 7 | WebAPI Not MVC   	
 - Uses Swagger for automation | No manual documentation 
-- Uses [automated test.http](./test/Test_Endpoint.http) for test within Visual studio  | No extra tooling
+- Uses [automated test.http](./Test/Test_Endpoint.http) for test within Visual studio  | No extra tooling
 - Uses [setup_mssql_with_docker.ps1](./setup_mssql_with_docker.ps1) for running MSSQL as container | No pollution 
 
 - Uses Dapper (micro ORM) for data access on Stored Procedure | No Entity Framework on Tables   
