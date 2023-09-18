@@ -1,7 +1,30 @@
 # For more info on HTTP files go to https://aka.ms/vs/httpfile
 
+### insure that the server is running on port 1234
 @hostname=localhost
 @port=1234
 @host={{hostname}}:{{port}}
-GET https://{{host}}/api/user
-  
+
+### Get all users
+GET http://{{host}}/api/user
+ 
+
+### Create a new user
+
+POST http://{{host}}/api/user
+Content-Type: application/json
+
+{
+    "id": 10,
+    "name": "User 10",
+    "email": "user10@mail.com",
+    "password": "user10",
+    "dateofBirth": "10/10/2010 00:00:00",
+    "dateofJoining": "01/01/2022 00:00:00"
+}
+
+
+### Get a user by id stored in variable @userID 
+GET http://{{host}}/api/user/10
+
+

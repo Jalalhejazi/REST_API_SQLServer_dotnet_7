@@ -6,15 +6,33 @@ using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddDbContext<DatabaseContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("dbConnection")));
+
+var connectionString = Environment.GetEnvironmentVariable("dbConnection", EnvironmentVariableTarget.User);
+
+if (string.IsNullOrEmpty(connectionString))
+{
+    Console.WriteLine("Please set the connection string in the environment variable dbConnection");
+    return;
+}
+
+builder.Services.AddDbContext<DatabaseContext>(options => options.UseSqlServer(connectionString));
+
 builder.Services.AddTransient<IStudent, StudentRepository>();
 builder.Services.AddControllers();
 
 builder.Services.AddEndpointsApiExplorer();
 
+const string ApiVersion = "v1";
 builder.Services.AddSwaggerGen(c =>
 {
-    c.SwaggerDoc("v1", new OpenApiInfo { Title = "API", Version = "v1" });
+    c.SwaggerDoc(ApiVersion, new OpenApiInfo
+    {
+        TermsOfService = new Uri("https://www.termsfeed.com/terms-service-generator/"),
+        Title = "Simple REST API for Learning purpose only (Maturity Model 2)",
+        Version = ApiVersion,
+        Description = "To learn more about Maturity Model <a href='https://github.com/Jalalhejazi/REST_0_1_2_3' target='!'>Follow this github repo</a> <br> <mark>No Security Best Practices !!</mark> ",
+
+    });
 
 });
 
@@ -26,7 +44,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI(options =>
     {
-        options.SwaggerEndpoint("../swagger/v1/swagger.json", "API v1");
+        options.SwaggerEndpoint($"{ApiVersion}/swagger.json", "API Version " + ApiVersion);
         options.DefaultModelsExpandDepth(-1);
     });
 }
