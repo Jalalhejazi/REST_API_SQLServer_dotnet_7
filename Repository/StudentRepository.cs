@@ -1,8 +1,10 @@
 ﻿using CRUDStoredProcedure.Interface;
 using CRUDStoredProcedure.Models;
 using Dapper;
+using Microsoft.Data.SqlClient;
 using System.Data;
-using System.Data.SqlClient;
+
+
 
 namespace CRUDStoredProcedure.Repository
 {
@@ -11,13 +13,16 @@ namespace CRUDStoredProcedure.Repository
         private readonly IConfiguration configuration;
         private readonly ILogger<StudentRepository> _logger;
         private readonly bool useDapper = true;
-        private readonly string dbConnection;
+        private readonly string? dbConnection = "" ;
+
 
         public StudentRepository(IConfiguration iConfig, ILogger<StudentRepository> logger)
+
         {
             configuration = iConfig;
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
-            dbConnection = configuration.GetSection("ConnectionStrings").GetSection("dbConnection").Value;
+                        
+            dbConnection = Environment.GetEnvironmentVariable("dbConnection", EnvironmentVariableTarget.User);
         }
 
         //To Get all user details   
@@ -127,7 +132,7 @@ namespace CRUDStoredProcedure.Repository
                 {
                     throw;
                 }
-            } 
+            }
         }
 
         //To Update the records of a particluar user    
@@ -223,6 +228,7 @@ namespace CRUDStoredProcedure.Repository
                     DataTable dataTable = new();
                     sqlDataAdapter.Fill(dataTable);
                     sqlConnection.Close();
+#pragma warning disable CS8603 // Possible null reference return.
                     return (from DataRow dataRow in dataTable.Rows
                             select new Student()
                             {
@@ -233,12 +239,13 @@ namespace CRUDStoredProcedure.Repository
                                 DateofBirth = dataRow["DateofBirth"].ToString(),
                                 DateofJoining = dataRow["DateofJoining"].ToString()
                             }).FirstOrDefault();
+#pragma warning restore CS8603 // Possible null reference return.
                 }
                 catch
                 {
                     throw;
                 }
-            }  
+            }
         }
 
         //To Delete the record of a particular user    
@@ -283,7 +290,7 @@ namespace CRUDStoredProcedure.Repository
                 {
                     throw;
                 }
-            } 
+            }
         }
     }
 }
