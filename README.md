@@ -33,3 +33,5 @@ Freedom to refactor and redesign after deployment
 ## [Entity vs Data Transfer Object (DTO) Separation](https://chat.openai.com/share/8988e67f-68c6-42b3-acdd-8ea475193d3a)
 
 ![](https://user-images.githubusercontent.com/784478/268920000-4fc0736f-8b2b-4476-9f0e-583f814ece9d.png)
+
+By separating the Entity model from the DTO model, especially in a stored procedure context, you are adding an additional layer of abstraction that allows for better flexibility, security, and maintainability.
