@@ -26,3 +26,9 @@ Freedom to refactor and redesign after deployment
 | 3             | Performance Optimization | Stored procedures are precompiled, leading to faster query performance compared to executing multiple SQL statements individually.                            |
 | 4             | Transaction Management   | Stored procedures allow for easier management of transactions by including multiple SQL statements and controlling transaction logic within the procedure.    |
 | 5             | Centralized Logic        | Using stored procedures centralizes the database logic, making it easier to manage and update. Any changes can be made in one place.                           |
+
+
+
+
+## [Entity vs Data Transfer Object (DTO) Separation](https://chat.openai.com/share/8988e67f-68c6-42b3-acdd-8ea475193d3a)
+
