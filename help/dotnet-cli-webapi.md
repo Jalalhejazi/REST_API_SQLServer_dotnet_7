@@ -40,7 +40,8 @@ cat global.json
 # expecting sdk version 3
 dotnet --version # should match global.json # 3.0.100
 
-# you can only configure global.json version that you already have installed
+# More info how dotnet and global.json works:
+https://aka.ms/dotnet/sdk-not-found
 ```
 
 
