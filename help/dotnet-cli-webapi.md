@@ -54,34 +54,34 @@ https://aka.ms/dotnet/sdk-not-found
 
 ## dotnet new webapi from scratch | the desired sdk version 6
 ```powershell	
-dotnet new globaljson # The template "global.json file" was created successfully.
+dotnet new globaljson --sdk-version 6.0.100 # The template "global.json file" was created successfully.
 
 # the content of global.json can be changed to any valid installed sdk
 cat global.json 
 {
   "sdk": {
-    "version": "6.0.0"
+    "version": "6.0.100"
   }
 }
-dotnet --version # expecting 6.0.0
+dotnet --version # expecting 6.0.100
 
-dotnet new webapi  --name projectName  --no-update-check --framework net6.0  --no-restore  --no-https  --dry-run
+dotnet new webapi  --name projectName  --no-update-check --no-restore  --no-https  --dry-run
 ```
 
 ## dotnet new webapi from scratch | the desired sdk version 7
 ```powershell	
-dotnet new globaljson # The template "global.json file" was created successfully.
+dotnet new globaljson--sdk-version 7.0.401 # The template "global.json file" was created successfully.
 
 # the content of global.json can be changed to any valid installed sdk
 cat global.json 
 {
   "sdk": {
-    "version": "7.0.0"
+    "version": "7.0.401"
   }
 }
-dotnet --version # expecting 7.0.0
+dotnet --version # expecting 7.0.401
 
-dotnet new webapi  --name projectName  --no-update-check --framework net7.0  --no-restore  --no-https  --dry-run
+dotnet new webapi  --name projectName  --no-update-check --no-restore  --no-https  --dry-run
 ```
 
 
