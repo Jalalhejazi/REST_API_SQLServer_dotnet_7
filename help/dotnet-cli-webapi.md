@@ -23,6 +23,30 @@ dotnet --version
 dotnet --list-sdks
 ```
 
+## How to configure the desired dotnet version | Switch between dotnet core SDK versions
+```powershell 
+# insure you have a global.json file created on the root of the project folder
+# varify the sdk version is matching the desired version 
+dotnet new globaljson
+
+{
+  "sdk": {
+    "version": "3.0.100"
+  }
+}
+
+# expecting sdk version 3
+dotnet --version # should match global.json # 3.0.100
+
+# you can only configure global.json version that you already have installed
+```
+
+
+
+
+
+
+
 
 
 ## dotnet new webapi from scratch (first time only)
