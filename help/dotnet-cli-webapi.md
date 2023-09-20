@@ -27,8 +27,10 @@ dotnet --list-sdks
 ```powershell 
 # insure you have a global.json file created on the root of the project folder
 # varify the sdk version is matching the desired version 
-dotnet new globaljson
+dotnet new globaljson # The template "global.json file" was created successfully.
 
+# the content of global.json can be changed to any valid installed sdk
+cat global.json 
 {
   "sdk": {
     "version": "3.0.100"
