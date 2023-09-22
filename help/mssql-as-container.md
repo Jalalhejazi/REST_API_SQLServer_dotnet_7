@@ -48,5 +48,14 @@ docker run -d --name sqlserver -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=Password123" -
 ## This image 'jalalhejazi/microservice_sqlserver:latest' includes data and stored procedures ready to use 
 
 ```powershell
+# docker run ready to go image 
 docker run -d --name sqlserverWithData -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=Djakp88t" -p 1433:1433 -v c:/dockervolumes/sqlserver/data:/var/opt/mssql/data -v c:/dockervolumes/sqlserver/log:/var/opt/mssql/log -v c:/dockervolumes/sqlserver/secrets:/var/opt/mssql/secrets jalalhejazi/microservice_sqlserver:latest
+
+
+# Verify Microsoft SQL Server 2017 (RTM-CU11) (KB4462262) - 14.0.3038.14 (X64)
+SQLCMD -S localhost,1433 -U sa -P Djakp88t -d master -Q 'select @@version'
+
+
+# verify stored-procedure can generate JSON output
+SQLCMD -S localhost,1433 -U sa -P Djakp88t -d AdventureworksLT2017 -Q 'exec API.Get_Product_Info'
 ```
